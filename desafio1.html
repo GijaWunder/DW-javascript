@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p>Olá Giovana, a <span id="classes">???</span> <samp id="adjetivos">???</samp> de <samp id="lugares">???</samp></p>
+
+    <script>
+        let classes = ["Paladina", "Maga", "Feiticeira", "Espadachim", "Arqueira"]
+        let adjetivos = ["Valente", "Implacável", "Vigorosa", "Gloriosa"]
+        let lugares = ["Avalon", "Neverwiter", "Asgard", "Stormwind"]
+
+        let classe = document.querySelector("p #classes")
+        classe.innerText = classes[Math.floor(Math.random() * 5)]
+
+        let adjetivo = document.querySelector("p #adjetivos")
+        adjetivo.innerText = adjetivos[Math.floor(Math.random() * 4)]
+
+        let lugar = document.querySelector("p #lugares")
+        lugar.innerText = lugares[Math.floor(Math.random() * 4)]
+
+    </script>
+    
+</body>
+</html>
