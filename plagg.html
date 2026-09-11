@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <img width="300px" src="https://static.wikia.nocookie.net/herois/images/8/8d/Plagg_Cat_Noir.png/revision/latest?cb=20221204230351&path-prefix=pt-br">
+
+    <p>???????</p>
+
+    <script>
+
+        let paragrafo1 = document.querySelector('p')
+
+        let imagem = document.querySelector('img')
+
+        imagem.onclick = clicou
+        imagem.onmouseenter = mouseenter
+        imagem.onmousedown = mousedown
+        imagem.onmouseup = mouseup
+        imagem.onmouseleave = mouseleave
+
+
+        function clicou(){
+            paragrafo1.textContent = "Quero queijooo!!!"
+        }
+
+        let paragrafo2 = document.querySelector('p')
+
+        function mouseenter(){
+            paragrafo2.textContent = "Mostrar as garras!!"
+        }
+
+        let paragrafo3 = document.querySelector('p')
+
+        function mousedown(){
+            paragrafo3.textContent = "Se eu sou um gênio, cadê minha lâmpada?"
+        }
+
+        let paragrafo4 = document.querySelector('p')
+
+        function mouseup(){
+            paragrafo4.textContent = "Olha, eu sou um kwami."
+        }
+
+        let paragrafo5 = document.querySelector('p')
+
+        function mouseleave(){
+            paragrafo5.textContent = "Eu me chamo Plagg."
+        }
+
+    </script>
+    
+</body>
+</html>
