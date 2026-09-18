@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta Clique</title>
+</head>
+<body>
+
+    <style>
+
+        .botao{
+            margin: 10px;
+        }
+
+        .reiniciar{
+            margin: 10px;
+        }
+
+        .caixa{
+            border: solid 1px;
+            border-radius: 5px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+
+    </style>
+
+    <div class="caixa">
+        <button class="botao">Clique Aqui</button>
+        <span class="contar"> 0 </span>
+        <div><button class="reiniciar">Reiniciar</button></div>
+    </div>
+
+    
+
+
+    <script>
+
+        const botao = document.querySelector('.botao')
+        const contar = document.querySelector('.contar')
+        const reiniciar = document.querySelector('.reiniciar')
+        let conta = 0
+        let zerar = 0
+
+        botao.addEventListener("click", ()=>{
+            conta++
+            contar.innerText = conta
+        })
+
+
+        reiniciar.addEventListener("click", ()=>{
+            contar.innerText = zerar
+            
+        })
+
+
+
+    </script>
+
+    
+</body>
+</html>
