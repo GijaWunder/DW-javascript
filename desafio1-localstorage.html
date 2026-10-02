@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        /*embelezando*/
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            transition: 3s;
+        }
+
+        /*tema claro*/
+        body.claro{
+            background-color: rgb(241, 229, 151);
+            color: rgb(127, 101, 7);
+        }
+
+        /*tema escuro*/
+        body.escuro{
+            background-color: rgb(185, 200, 255);
+            color: rgb(24, 34, 148);
+        }
+
+        /*tema pink*/
+        body.pink{
+            background-color: rgb(255, 171, 213);
+            color: rgb(152, 24, 96);
+        }
+
+        body.verde{
+            background-color: rgb(36, 51, 11);
+            color: rgb(106, 165, 76);
+        }
+
+
+    </style>
+
+</head>
+<body>
+    
+    <form id="formPreferencias">
+
+        <div class="grupo">
+            <label for="">
+                tema:
+            </label>
+
+            <select name="" id="tema">
+
+                <option value="claro">
+                    manteiga
+                </option>
+
+                <option value="escuro">
+                    azul bb
+                </option>
+
+                <option value="pink">
+                    rosa claro
+                </option>
+
+                <option value="verde">
+                    verde lesbico
+                </option>
+
+
+            </select>
+        </div>
+
+        <div class="grupo">
+            <button id="btnSalvar">salvar preferencias</button>
+        </div>
+
+    </form>
+
+    <script>
+
+        //elementos html//
+        const body = document.querySelector('body')
+        const form = document.querySelector('#formPreferencias')
+        const tema = document.querySelector('#tema')
+
+        //carregar dados do localStorage
+        const temaSalvo = localStorage.getItem('tema')
+
+        if (tema) {
+            aplicarTema(temaSalvo)
+        }
+
+        //salvar preferencia//
+        form.addEventListener('submit', (evento)=>{
+            evento.preventDefault() //evita o comportamento padrao do form que é enviar e atualizar a pagina
+
+            //recuperar informacoes
+            const temaSelecionado = tema.value 
+
+            aplicarTema(temaSelecionado)
+            salvarTema(temaSelecionado)
+        })
+
+        //aplicar tema
+        function aplicarTema(temaSelecionado){
+            //remove as classes de temas anterores 
+            body.classList.remove('claro', 'escuro', 'pink', 'verde')
+
+            //adiciona o tema escolhido
+            body.classList.add(temaSelecionado)
+
+            //salva a opcao que foi selecionada
+            tema.value = temaSelecionado
+
+        }
+
+        //salvar tema
+        function salvarTema(tema){
+            localStorage.setItem('tema', tema)
+
+        }
+
+    </script>
+    
+</body>
+</html>
