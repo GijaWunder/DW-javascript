@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Notas</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Minhas notas</h1>
+
+        <!-- passo 1: criar a entrada -->
+        <div class="entrada">
+
+            <input type="text" id="nota" placeholder="Digite uma nota...">
+            <button id="btnAdicionar">Adicionar</button>
+
+        </div>
+
+        <!-- passo 2: apresentar notas -->
+        <ul id="listaNotas"> <!-- lista nao ordenada  -->
+            <!-- tem q ser vazio pq nao é a gnt q vai colocar as notas -->
+        </ul>
+
+        <!-- passo 3: apagar itens -->
+        <button id="btnApagarItens">Limpar Lista</button>
+
+    </div>
+
+    <script>
+
+        //elementos html
+        const listaNotas = document.querySelector('#listaNotas')
+        const campoNota = document.querySelector('#nota')
+        const btnAdicionar = document.querySelector('#btnAdicionar')
+        const btnApagarItens = document.querySelector('#btnApagarItens')
+
+        //carregar notas
+        let notas = JSON.parse(
+            localStorage.getItem('notas')
+        )
+
+        if(notas == null){ //se a pessoa nunca usou as notas vai criar uma lista vazia para poder adicinar as notas
+            notas = []
+        }
+
+        //adicinar notas
+        function adicionarNota(){
+            //ta pegando o texto do campo nota
+            const texto = campoNota.value.trim() //trim remove os espaços antes e depois do texto
+
+            if (texto == "") {
+                alert('Digite alguma coisa!!!')
+                return
+            }
+
+            const novaNota = {
+                texto : texto, 
+                concluida: false
+            }
+
+            //ta adicinando a nova nota na lista de notas
+            notas.push(novaNota)
+
+            //salva a nota
+            localStorage.setItem(
+                'notas',
+                JSON.stringify(notas)
+            )
+
+            //depois de adicionar uma nota o campo fiac sem nada
+            campoNota.value = ''
+
+            exibirNotas()
+
+
+        }
+
+        //exibir notas
+        function exibirNotas(){
+            listaNotas.innerHTML = ''
+
+            if (notas.length == 0) {
+                listaNotas.textContent = 'Nenhuma nota cadastrada'
+                return
+            }
+
+            notas.forEach(function(nota, indice){
+                const item = document.createElement('li')
+
+                //texto 
+                const texto = document.createElement('span')
+                texto.textContent = nota.texto
+
+                texto.classList.add('texto-nota')
+
+                //se concluida = true ent é true, e se for = a false é false
+                if (nota.concluida) {
+                    texto.classList.add('concluida')
+                }
+
+                //botao de remover
+                const btnRemover = document.createElement('button')
+                btnRemover.textContent = 'Remover'
+
+                btnRemover.addEventListener('click', function(){
+                    removerNota(indice)
+                })
+
+                //botao de apagar itens
+                btnApagarItens.addEventListener('click', function(){
+                    apagarItens()
+                })
+
+                item.appendChild(texto)
+                item.appendChild(btnRemover)
+                listaNotas.appendChild(item)
+
+            })
+
+
+
+        }
+
+        //remover notas
+        function removerNota(indice){
+            notas.splice(indice, 1) //splice remove um numero x de notas, nesse caso vai remover 1 o proprio indice
+
+            localStorage.setItem(
+                "notas",
+                JSON.stringify(notas)
+            )
+
+            exibirNotas()
+        }
+
+        //apagar todos os itens da lista
+        function apagarItens(){
+            notas = []
+
+            localStorage.setItem(
+                "notas",
+                JSON.stringify(notas)
+            )
+
+            exibirNotas()
+
+        }
+
+        //eventos
+        btnAdicionar.addEventListener('click', adicionarNota) //quando o botao é clicado adiciona a nota
+
+        exibirNotas()
+
+    </script>
+    
+</body>
+</html>
